@@ -1,0 +1,34 @@
+<div class="compra" style="padding: 25px;">
+    <div style="height: 15%; background-color: tomato; border-top-left-radius: 8px; border-top-right-radius: 8px; padding: 25px;">
+        <h1 style="text-align: center; color: white; font-weight: bold;">NUMERO DE FACTURA: {{compra.numeroFactura | uppercase}}</h1>
+    </div>
+
+    <div style="display: flex; padding: 10px;">
+        <div style="width: 30%; text-align: right; height: 95%;">
+            <h3 class="ti">ID COMPRA:</h3>
+            <h3 class="ti">NUMERO FACTURA</h3>
+            <h3 class="ti">PROVEEDOR:</h3>
+            <h3 class="ti">TOTAL:</h3>
+            <h3 class="ti">PRODUCTOS:</h3>
+        </div>
+
+        <div style="padding-left: 5px; height: 95%;">
+            <h3>{{compra.id}}</h3>
+            <h3>{{compra.proveedor}}</h3>
+            <h3>{{compra.numeroFactura | titlecase}}</h3>
+            <h3>{{compra.total}}</h3>
+            <h3>
+            
+                <ol>
+                  <li *ngFor="let ped of productos">
+                    Nombre: {{ped.nombre}} Cantidad: {{ped.cantidad}}
+                  </li>
+                </ol>
+              </h3>
+        </div>
+    </div>
+
+    <div style="display: flex; justify-content: center; padding: 25px;">
+        <button class="btn btn-success" routerLink="/administracion/compraes">Volver</button>
+    </div>
+</div>

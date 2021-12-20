@@ -1,0 +1,120 @@
+<div class="container"
+    style="display: flex; justify-content: center; flex-wrap: wrap; background-color: white; padding: 25px; height: 100%;">
+
+    <div style="width:100% ; margin: 0 auto; padding: 15px; text-align: center;">
+        <form [formGroup]="selec">
+
+            <label for="">Estado Pedidos</label>
+            <select name="" id="selector" formControlName="seleccion" (change)="cambiar()" class="form-select"
+                aria-label="Default select example" style="display: inline; width: 30%; margin-right: 10px;">
+                <option *ngFor="let pro of proveedores" value="{{pro.id}}">{{pro.nombre}}</option>
+            </select>
+        </form>
+    </div>
+
+    <div style="width: 100%; display: flex; justify-content: space-evenly;">
+
+        <div class="caja">
+
+
+            <div style="background-color: #5584AC; border-radius: 8px;">
+                <h2 style="text-align: center;">Selecciona Los Productos Del proveedor</h2>
+            </div>
+            <table id="tabla" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NOMBRE</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let pro of productos; let index=index">
+                        <td>{{pro.id}}</td>
+                        <td>{{pro.nombre}}</td>
+                        <th>
+                            <a (click)="buscar(pro.id)" class="btn btn-danger">
+                                Agregar
+                            </a>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="caja">
+            <form [formGroup]="agregar">
+
+
+                ID PRODUCTO: <input class="form-control" type="text" formControlName="id" readonly>
+
+                NOMBRE: <input class="form-control" type="text" formControlName="nombre" readonly>
+
+                CANTIDAD <input class="form-control" type="number" formControlName="cantidad">
+
+                IVA <input class="form-control" type="number" formControlName="iva">
+
+                PRECIO: <input class="form-control" type="number" formControlName="precio">
+
+                RETENCIÓN: <input class="form-control" type="number" formControlName="retencion">
+
+                <input hidden class="form-control" type="text" formControlName="estado" value="true"> <br>
+
+                <input hidden class="form-control" type="number" formControlName="categoria" value=""> <br>
+
+                <input hidden class="form-control" type="number" formControlName="cantidad_minima"> <br>
+
+                <a class="btn btn-primary" type="submit" style="margin-top: 5px;" (click)="agregarProducto()">Agregar
+                    Producto</a>
+            </form>
+
+        </div>
+    </div>
+
+
+    <div>
+        <div class="caja" style="margin-top: 35px;">
+
+
+            <table id="tabla" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NOMBRE</th>
+                        <th>CANTIDAD</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let pro of pedido; let index=index">
+                        <td>{{pro.id}}</td>
+                        <td>{{pro.nombre}}</td>
+                        <td>{{pro.cantidad}}</td>
+                        <th>
+                            <a (click)="eliminar(pro.id)" class="btn btn-danger">
+                                eliminar
+                            </a>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+        </div>
+
+        <div class="caja" style="margin-top: 35px;">
+
+            <form [formGroup]="form">
+
+                <span style="font-weight: bold;"> NUMERO FACTURA:</span> <input class="form-control" type="text" formControlName="numeroFactura"> <br>
+
+                
+                <div style="text-align: center;">
+                    <button class="btn btn-info" (click)="enviarPedido()">Agregar Pedido</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
